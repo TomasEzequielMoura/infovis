@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,17 +29,67 @@
       height: auto;
       min-height: 400px;
     }
+    /* Estilo para ajustar el scroll y que el título no quede pegado arriba */
+    section, .scroll-mt {
+      scroll-margin-top: 2rem;
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased p-6 md:p-12">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-  <main class="max-w-5xl mx-auto space-y-12">
+  <div class="md:hidden sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm">
+    <span class="font-bold text-slate-800">Menú</span>
+    <button id="menu-btn" class="text-slate-500 hover:text-slate-800 focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <aside id="sidebar" class="fixed inset-y-0 left-0 bg-white w-64 border-r border-slate-200 p-6 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40 overflow-y-auto shadow-lg md:shadow-none">
+    
+    <div class="mb-8">
+      <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">ITBA</h2>
+      <p class="text-sm text-slate-500 font-medium">Visualización de Datos</p>
+    </div>
+
+    <nav class="space-y-6">
+      <div>
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Raw Graph</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#kobe-bryant" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+              Tiros de Kobe Bryant
+            </a>
+          </li>
+          <li>
+            <a href="#medallas" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+              Medallas Olímpicas
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Flourish</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#soldados" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+              Defunción de Soldados
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="md:ml-64 p-6 md:p-12 max-w-5xl mx-auto space-y-12 transition-all">
 
     <header class="text-center space-y-3 pb-6 border-b border-slate-200">
       <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
         Visualización de la Información
       </h1>
-      <p class="text-lg text-slate-500 font-medium">ITBA | Tomas Moura</p>
+      <p class="text-lg text-slate-500 font-medium">Tomás Moura</p>
     </header>
 
     <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
@@ -49,7 +99,7 @@
       
       <div class="p-6 grid grid-cols-1 gap-12">
         
-        <div class="space-y-4">
+        <div id="kobe-bryant" class="space-y-4 scroll-mt">
           <div>
             <h3 class="text-lg font-bold text-slate-800">Tiros de Kobe Bryant</h3>
             <p class="text-sm text-slate-500">Por tipo de tiro, por lugar de la cancha y por tiros encestados.</p>
@@ -59,10 +109,10 @@
           </div>
         </div>
 
-        <div class="space-y-4">
+        <div id="medallas" class="space-y-4 scroll-mt">
           <div>
-            <h3 class="text-lg font-bold text-slate-800">Distribución de Medallas Olimpicas</h3>
-            <p class="text-sm text-slate-500">Por region y por pais</p>
+            <h3 class="text-lg font-bold text-slate-800">Distribución de Medallas Olímpicas</h3>
+            <p class="text-sm text-slate-500">Por región y por país.</p>
           </div>
           <div class="bg-slate-50 rounded-xl p-2 border border-slate-100 flex items-center justify-center transition-all hover:shadow-md">
             <object type="image/svg+xml" data="./Medals.svg"></object>
@@ -78,10 +128,10 @@
       </div>
       
       <div class="p-6">
-        <div class="space-y-4">
+        <div id="soldados" class="space-y-4 scroll-mt">
           <div>
-            <h3 class="text-lg font-bold text-slate-800">Causas de difunción de soldados</h3>
-            <p class="text-sm text-slate-500">Por año por motivo</p>
+            <h3 class="text-lg font-bold text-slate-800">Causas de defunción de soldados</h3>
+            <p class="text-sm text-slate-500">Por año y por motivo.</p>
           </div>
           <div class="flourish-embed flourish-chart rounded-xl overflow-hidden border border-slate-100" data-src="visualisation/27939062">
             <script src="https://public.flourish.studio/resources/embed.js"></script>
@@ -93,5 +143,23 @@
 
   </main>
 
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+    });
+
+    // Cerrar el menú en móviles al hacer clic en un enlace
+    const links = sidebar.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          sidebar.classList.add('-translate-x-full');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
