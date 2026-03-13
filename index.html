@@ -29,71 +29,62 @@
       height: auto;
       min-height: 400px;
     }
+    /* Ajuste para que el scroll no quede tapado por la navbar superior */
     section, .scroll-mt {
-      scroll-margin-top: 2rem;
+      scroll-margin-top: 5rem;
     }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-  <div class="md:hidden sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm">
-    <span class="font-bold text-slate-800">Menú</span>
-    <button id="menu-btn" class="text-slate-500 hover:text-slate-800 focus:outline-none">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
-    </button>
-  </div>
-
-  <aside id="sidebar" class="fixed inset-y-0 left-0 bg-white w-64 border-r border-slate-200 p-6 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40 overflow-y-auto shadow-lg md:shadow-none">
-    
-    <div class="mb-8">
-      <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">ITBA</h2>
-      <p class="text-sm text-slate-500 font-medium">Visualización de Datos</p>
+  <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm">
+    <div class="flex items-center gap-3">
+      <span class="font-extrabold text-slate-900 text-lg md:text-xl tracking-tight">ITBA</span>
+      <span class="text-slate-300">|</span>
+      <span class="text-sm font-medium text-slate-500 hidden md:block">Visualización de Datos</span>
     </div>
 
-    <nav class="space-y-6">
-      <div>
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Raw Graph</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="#kobe-bryant" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-              Tiros de Kobe Bryant
-            </a>
-          </li>
-          <li>
-            <a href="#medallas" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-              Medallas Olímpicas
-            </a>
-          </li>
-        </ul>
-      </div>
+    <div class="relative">
+      <button id="dropdown-btn" class="flex items-center gap-2 text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-4 py-2.5 rounded-xl transition-colors focus:outline-none">
+        Navegar
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
 
-      <div>
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Flourish</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="#soldados" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-              Defunción de Soldados
-            </a>
-          </li>
-        </ul>
-      </div>
+      <div id="dropdown-menu" class="absolute right-0 mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-xl hidden flex-col py-3 z-50">
+        
+        <div class="px-4 pb-2">
+          <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Raw Graph</h3>
+          <div class="space-y-1">
+            <a href="#kobe-bryant" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Tiros de Kobe Bryant</a>
+            <a href="#medallas" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Medallas Olímpicas</a>
+          </div>
+        </div>
 
-      <div>
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Datawrapper</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="#range-plot" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-              Comparación (Range Plot)
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </aside>
+        <hr class="border-slate-100 my-1">
 
-  <main class="md:ml-64 p-6 md:p-12 max-w-5xl mx-auto space-y-12 transition-all">
+        <div class="px-4 py-2">
+          <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Flourish</h3>
+          <div class="space-y-1">
+            <a href="#soldados" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Defunción de Soldados</a>
+          </div>
+        </div>
+
+        <hr class="border-slate-100 my-1">
+
+        <div class="px-4 pt-2">
+          <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Datawrapper</h3>
+          <div class="space-y-1">
+            <a href="#range-plot" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Comparación (Range Plot)</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <main class="p-6 md:p-12 max-w-5xl mx-auto space-y-12">
 
     <header class="text-center space-y-3 pb-6 border-b border-slate-200">
       <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
@@ -169,20 +160,28 @@
   </main>
 
   <script>
-    const menuBtn = document.getElementById('menu-btn');
-    const sidebar = document.getElementById('sidebar');
+    const dropdownBtn = document.getElementById('dropdown-btn');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const links = document.querySelectorAll('.dropdown-link');
 
-    menuBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('-translate-x-full');
+    // Alternar el menú al hacer clic en el botón
+    dropdownBtn.addEventListener('click', (event) => {
+      event.stopPropagation(); // Evita que el clic se propague al documento
+      dropdownMenu.classList.toggle('hidden');
     });
 
-    const links = sidebar.querySelectorAll('a');
+    // Cerrar el menú al hacer clic en un enlace
     links.forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth < 768) {
-          sidebar.classList.add('-translate-x-full');
-        }
+        dropdownMenu.classList.add('hidden');
       });
+    });
+
+    // Cerrar el menú si el usuario hace clic fuera de él
+    document.addEventListener('click', (event) => {
+      if (!dropdownBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.add('hidden');
+      }
     });
   </script>
 </body>
