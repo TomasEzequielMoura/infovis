@@ -29,7 +29,6 @@
       height: auto;
       min-height: 400px;
     }
-    /* Estilo para ajustar el scroll y que el título no quede pegado arriba */
     section, .scroll-mt {
       scroll-margin-top: 2rem;
     }
@@ -80,6 +79,17 @@
           </li>
         </ul>
       </div>
+
+      <div>
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Datawrapper</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#range-plot" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+              Comparación (Range Plot)
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </aside>
 
@@ -98,7 +108,6 @@
       </div>
       
       <div class="p-6 grid grid-cols-1 gap-12">
-        
         <div id="kobe-bryant" class="space-y-4 scroll-mt">
           <div>
             <h3 class="text-lg font-bold text-slate-800">Tiros de Kobe Bryant</h3>
@@ -118,7 +127,6 @@
             <object type="image/svg+xml" data="./Medals.svg"></object>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -141,6 +149,27 @@
       </div>
     </section>
 
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-slate-100 px-6 py-4 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-800">Datawrapper</h2>
+      </div>
+      
+      <div class="p-6">
+        <div id="range-plot" class="space-y-4 scroll-mt">
+          <div>
+            <h3 class="text-lg font-bold text-slate-800">Men vs. (Range Plot)</h3>
+            <p class="text-sm text-slate-500">Análisis comparativo de rangos.</p>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 transition-all hover:shadow-md overflow-hidden">
+            <div style="min-height:458px" id="datawrapper-vis-5ZnKd">
+              <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5ZnKd/embed.js" charset="utf-8" data-target="#datawrapper-vis-5ZnKd"></script>
+              <noscript><img src="https://datawrapper.dwcdn.net/5ZnKd/full.png" alt="Men vs. (Range Plot)" /></noscript>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script>
@@ -151,7 +180,6 @@
       sidebar.classList.toggle('-translate-x-full');
     });
 
-    // Cerrar el menú en móviles al hacer clic en un enlace
     const links = sidebar.querySelectorAll('a');
     links.forEach(link => {
       link.addEventListener('click', () => {
