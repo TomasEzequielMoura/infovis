@@ -7,8 +7,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+  
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script>
@@ -16,7 +17,20 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              900: '#0c4a6e',
+            }
+          },
+          boxShadow: {
+            'glass': '0 4px 30px rgba(0, 0, 0, 0.05)',
+            'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
           }
         }
       }
@@ -24,115 +38,122 @@
   </script>
 
   <style>
+    body {
+      /* Fondo con un degradado radial muy sutil para romper el color sólido */
+      background-color: #f8fafc;
+      background-image: radial-gradient(circle at top center, #ffffff 0%, #f8fafc 100%);
+    }
     object {
       width: 100%;
       height: auto;
       min-height: 400px;
     }
-    /* Ajuste para que el scroll no quede tapado por la navbar superior */
+    /* Ajuste de anclaje para la nueva navbar flotante */
     section, .scroll-mt {
-      scroll-margin-top: 5rem;
+      scroll-margin-top: 8rem;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+<body class="text-slate-800 font-sans antialiased min-h-screen relative">
 
-  <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm">
-    <div class="flex items-center gap-3">
-      <span class="font-extrabold text-slate-900 text-lg md:text-xl tracking-tight">ITBA</span>
-      <span class="text-slate-300">|</span>
-      <span class="text-sm font-medium text-slate-500 hidden md:block">Visualización de Datos</span>
-    </div>
-
-    <div class="relative">
-      <button id="dropdown-btn" class="flex items-center gap-2 text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-4 py-2.5 rounded-xl transition-colors focus:outline-none">
-        Navegar
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-
-      <div id="dropdown-menu" class="absolute right-0 mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-xl hidden flex-col py-3 z-50">
-        
-        <div class="px-4 pb-2">
-          <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Raw Graph</h3>
-          <div class="space-y-1">
-            <a href="#kobe-bryant" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Tiros de Kobe Bryant</a>
-            <a href="#medallas" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Medallas Olímpicas</a>
-          </div>
-        </div>
-
-        <hr class="border-slate-100 my-1">
-
-        <div class="px-4 py-2">
-          <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Flourish</h3>
-          <div class="space-y-1">
-            <a href="#soldados" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Defunción de Soldados</a>
-          </div>
-        </div>
-
-        <hr class="border-slate-100 my-1">
-
-        <div class="px-4 pt-2">
-          <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Datawrapper</h3>
-          <div class="space-y-1">
-            <a href="#range-plot" class="block text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Comparación (Range Plot)</a>
-          </div>
-        </div>
-
+  <div class="fixed top-4 left-0 right-0 z-50 px-4 pointer-events-none flex justify-center">
+    <nav class="w-full max-w-5xl bg-white/70 backdrop-blur-md border border-white/40 shadow-glass rounded-2xl px-6 py-3 flex justify-between items-center pointer-events-auto transition-all">
+      <div class="flex items-center gap-3">
+        <span class="font-extrabold text-slate-900 text-lg tracking-tight">ITBA</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-sm font-semibold text-slate-500 hidden md:block">Visualización de Datos</span>
       </div>
-    </div>
-  </nav>
 
-  <main class="p-6 md:p-12 max-w-5xl mx-auto space-y-12">
+      <div class="relative">
+        <button id="dropdown-btn" class="flex items-center gap-2 text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 px-4 py-2 rounded-xl shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+          Explorar
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
 
-    <header class="text-center space-y-3 pb-6 border-b border-slate-200">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+        <div id="dropdown-menu" class="absolute right-0 mt-3 w-64 bg-white/90 backdrop-blur-xl border border-slate-100 rounded-2xl shadow-soft hidden flex-col py-3 z-50 origin-top-right transition-all">
+          
+          <div class="px-4 pb-2">
+            <h3 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">Raw Graph</h3>
+            <div class="space-y-1">
+              <a href="#kobe-bryant" class="block text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-brand-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Tiros de Kobe Bryant</a>
+              <a href="#medallas" class="block text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-brand-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Medallas Olímpicas</a>
+            </div>
+          </div>
+
+          <div class="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent my-1"></div>
+
+          <div class="px-4 py-2">
+            <h3 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">Flourish</h3>
+            <div class="space-y-1">
+              <a href="#soldados" class="block text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-brand-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Defunción de Soldados</a>
+            </div>
+          </div>
+
+          <div class="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent my-1"></div>
+
+          <div class="px-4 pt-2">
+            <h3 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">Datawrapper</h3>
+            <div class="space-y-1">
+              <a href="#range-plot" class="block text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-brand-50 px-3 py-2 rounded-lg transition-colors dropdown-link">Comparación (Range Plot)</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main class="p-6 pt-32 md:p-12 md:pt-40 max-w-5xl mx-auto space-y-16">
+
+    <header class="text-center space-y-4 pb-8">
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-700 to-slate-500">
         Visualización de la Información
       </h1>
-      <p class="text-lg text-slate-500 font-medium">Tomás Moura</p>
+      <p class="text-lg md:text-xl text-slate-500 font-medium tracking-wide">Tomás Moura</p>
     </header>
 
-    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-      <div class="bg-slate-100 px-6 py-4 border-b border-slate-200">
-        <h2 class="text-xl font-bold text-slate-800">Raw Graph</h2>
+    <section class="bg-white rounded-[2rem] shadow-soft border border-slate-100 overflow-hidden">
+      <div class="bg-slate-50/50 px-8 py-6 border-b border-slate-100 backdrop-blur-sm">
+        <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Raw Graph</h2>
       </div>
       
-      <div class="p-6 grid grid-cols-1 gap-12">
-        <div id="kobe-bryant" class="space-y-4 scroll-mt">
+      <div class="p-8 grid grid-cols-1 gap-14">
+        <div id="kobe-bryant" class="space-y-5 scroll-mt group">
           <div>
-            <h3 class="text-lg font-bold text-slate-800">Tiros de Kobe Bryant</h3>
-            <p class="text-sm text-slate-500">Por tipo de tiro, por lugar de la cancha y por tiros encestados.</p>
+            <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-600 transition-colors">Tiros de Kobe Bryant</h3>
+            <p class="text-sm text-slate-500 mt-1 font-medium">Por tipo de tiro, por lugar de la cancha y por tiros encestados.</p>
           </div>
-          <div class="bg-slate-50 rounded-xl p-2 border border-slate-100 flex items-center justify-center transition-all hover:shadow-md">
+          <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex items-center justify-center transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-soft">
             <object type="image/svg+xml" data="./viz.svg"></object>
           </div>
         </div>
 
-        <div id="medallas" class="space-y-4 scroll-mt">
+        <div id="medallas" class="space-y-5 scroll-mt group">
           <div>
-            <h3 class="text-lg font-bold text-slate-800">Distribución de Medallas Olímpicas</h3>
-            <p class="text-sm text-slate-500">Por región y por país.</p>
+            <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-600 transition-colors">Distribución de Medallas Olímpicas</h3>
+            <p class="text-sm text-slate-500 mt-1 font-medium">Por región y por país.</p>
           </div>
-          <div class="bg-slate-50 rounded-xl p-2 border border-slate-100 flex items-center justify-center transition-all hover:shadow-md">
+          <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex items-center justify-center transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-soft">
             <object type="image/svg+xml" data="./Medals.svg"></object>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-      <div class="bg-slate-100 px-6 py-4 border-b border-slate-200">
-        <h2 class="text-xl font-bold text-slate-800">Flourish</h2>
+    <section class="bg-white rounded-[2rem] shadow-soft border border-slate-100 overflow-hidden">
+      <div class="bg-slate-50/50 px-8 py-6 border-b border-slate-100 backdrop-blur-sm">
+        <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Flourish</h2>
       </div>
       
-      <div class="p-6">
-        <div id="soldados" class="space-y-4 scroll-mt">
+      <div class="p-8">
+        <div id="soldados" class="space-y-5 scroll-mt group">
           <div>
-            <h3 class="text-lg font-bold text-slate-800">Causas de defunción de soldados</h3>
-            <p class="text-sm text-slate-500">Por año y por motivo.</p>
+            <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-600 transition-colors">Causas de defunción de soldados</h3>
+            <p class="text-sm text-slate-500 mt-1 font-medium">Por año y por motivo.</p>
           </div>
-          <div class="flourish-embed flourish-chart rounded-xl overflow-hidden border border-slate-100" data-src="visualisation/27939062">
+          <div class="flourish-embed flourish-chart rounded-2xl overflow-hidden border border-slate-100 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-soft" data-src="visualisation/27939062">
             <script src="https://public.flourish.studio/resources/embed.js"></script>
             <noscript><img src="https://public.flourish.studio/visualisation/27939062/thumbnail" width="100%" alt="visualization" /></noscript>
           </div>
@@ -140,14 +161,18 @@
       </div>
     </section>
 
-    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-      <div class="bg-slate-100 px-6 py-4 border-b border-slate-200">
-        <h2 class="text-xl font-bold text-slate-800">Datawrapper</h2>
+    <section class="bg-white rounded-[2rem] shadow-soft border border-slate-100 overflow-hidden">
+      <div class="bg-slate-50/50 px-8 py-6 border-b border-slate-100 backdrop-blur-sm">
+        <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Datawrapper</h2>
       </div>
       
-      <div class="p-6">
-        <div id="range-plot" class="space-y-4 scroll-mt">
-          <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 transition-all hover:shadow-md overflow-hidden">
+      <div class="p-8">
+        <div id="range-plot" class="space-y-5 scroll-mt group">
+          <div>
+            <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-600 transition-colors">Comparación de Rangos</h3>
+            <p class="text-sm text-slate-500 mt-1 font-medium">Análisis detallado (Range Plot).</p>
+          </div>
+          <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-soft overflow-hidden">
             <div style="min-height:458px" id="datawrapper-vis-5ZnKd">
               <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5ZnKd/embed.js" charset="utf-8" data-target="#datawrapper-vis-5ZnKd"></script>
               <noscript><img src="https://datawrapper.dwcdn.net/5ZnKd/full.png" alt="Men vs. (Range Plot)" /></noscript>
@@ -164,23 +189,23 @@
     const dropdownMenu = document.getElementById('dropdown-menu');
     const links = document.querySelectorAll('.dropdown-link');
 
-    // Alternar el menú al hacer clic en el botón
     dropdownBtn.addEventListener('click', (event) => {
-      event.stopPropagation(); // Evita que el clic se propague al documento
+      event.stopPropagation();
       dropdownMenu.classList.toggle('hidden');
+      dropdownMenu.classList.toggle('flex');
     });
 
-    // Cerrar el menú al hacer clic en un enlace
     links.forEach(link => {
       link.addEventListener('click', () => {
         dropdownMenu.classList.add('hidden');
+        dropdownMenu.classList.remove('flex');
       });
     });
 
-    // Cerrar el menú si el usuario hace clic fuera de él
     document.addEventListener('click', (event) => {
       if (!dropdownBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
         dropdownMenu.classList.add('hidden');
+        dropdownMenu.classList.remove('flex');
       }
     });
   </script>
