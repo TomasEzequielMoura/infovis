@@ -41,6 +41,11 @@
       background-color: #f1f5f9;
       overflow-x: hidden;
     }
+
+@keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     
     .glass-panel {
       background: rgba(255, 255, 255, 0.65);
@@ -518,6 +523,38 @@
     document.querySelectorAll('.reveal').forEach((el) => {
       observer.observe(el);
     });
+// --- LÓGICA DEL CARRUSEL FLOURISH ---
+    const btnSlide1 = document.getElementById('btn-slide-1');
+    const btnSlide2 = document.getElementById('btn-slide-2');
+    const slide1 = document.getElementById('slide-1');
+    const slide2 = document.getElementById('slide-2');
+
+    if(btnSlide1 && btnSlide2) {
+      btnSlide1.addEventListener('click', () => {
+        // Estilos botones
+        btnSlide1.classList.add('bg-white', 'text-cyan-700', 'shadow-sm');
+        btnSlide1.classList.remove('text-slate-500');
+        btnSlide2.classList.remove('bg-white', 'text-cyan-700', 'shadow-sm');
+        btnSlide2.classList.add('text-slate-500');
+        
+        // Mostrar / Ocultar
+        slide2.classList.replace('block', 'hidden');
+        slide1.classList.replace('hidden', 'block');
+      });
+
+      btnSlide2.addEventListener('click', () => {
+        // Estilos botones
+        btnSlide2.classList.add('bg-white', 'text-cyan-700', 'shadow-sm');
+        btnSlide2.classList.remove('text-slate-500');
+        btnSlide1.classList.remove('bg-white', 'text-cyan-700', 'shadow-sm');
+        btnSlide1.classList.add('text-slate-500');
+        
+        // Mostrar / Ocultar
+        slide1.classList.replace('block', 'hidden');
+        slide2.classList.replace('hidden', 'block');
+      });
+    }
+    
   </script>
 </body>
 </html>
