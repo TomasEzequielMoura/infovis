@@ -42,7 +42,7 @@
       overflow-x: hidden;
     }
 
-@keyframes fadeIn {
+    @keyframes fadeIn {
       from { opacity: 0; transform: translateY(5px); }
       to { opacity: 1; transform: translateY(0); }
     }
@@ -84,7 +84,7 @@
   </div>
 
   <div class="fixed top-6 left-0 right-0 z-50 px-4 pointer-events-none flex justify-center">
-    <nav class="w-full max-w-5xl glass-panel rounded-full px-6 py-3 flex justify-between items-center pointer-events-auto transition-all duration-300 hover:bg-white/80">
+    <nav class="w-full max-w-[96%] glass-panel rounded-full px-6 py-3 flex justify-between items-center pointer-events-auto transition-all duration-300 hover:bg-white/80">
       <div class="flex items-center gap-3">
         <span class="font-display font-bold text-slate-900 text-xl tracking-tighter">ITBA</span>
       </div>
@@ -97,7 +97,7 @@
 
         <div id="dropdown-menu" class="absolute right-0 mt-3 w-64 glass-panel rounded-2xl hidden flex-col py-3 z-50 origin-top-right transition-all">
           
-<div id="menu-entregable" class="block">
+          <div id="menu-entregable" class="block">
             <div class="px-4 pb-2">
               <h3 class="text-xs font-display font-bold text-slate-400 uppercase tracking-widest mb-2">Decodificando Gastos</h3>
               <div class="space-y-1">
@@ -135,7 +135,7 @@
     </nav>
   </div>
 
-  <main class="p-6 pt-32 md:p-12 md:pt-40 max-w-5xl mx-auto space-y-12">
+  <main class="p-4 pt-32 md:p-8 md:pt-36 w-full max-w-[96%] mx-auto space-y-12">
 
     <header class="text-center space-y-6 reveal">
       <div class="inline-block px-4 py-1.5 rounded-full bg-indigo-100/50 border border-indigo-200/50 text-indigo-800 text-sm font-semibold tracking-wide mb-4">
@@ -160,9 +160,9 @@
       </div>
     </header>
 
-<div id="vista-entregable" class="space-y-16 transition-opacity duration-500 opacity-100 block pb-20">
+    <div id="vista-entregable" class="space-y-16 transition-opacity duration-500 opacity-100 block pb-20">
       
-      <div class="text-center max-w-3xl mx-auto space-y-4 reveal">
+      <div class="text-center max-w-4xl mx-auto space-y-4 reveal">
         <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-900 tracking-tight">Decodificando mis gastos</h2>
         <p class="text-slate-600 text-lg font-light leading-relaxed">
           Un análisis exhaustivo de mi huella financiera durante el ultimo año. Utilizando el registro completo de transacciones de Mercado Pago, este proyecto busca entender patrones de consumo, identificar fugas de capital y visualizar cómo mis hábitos financieros mutaron a lo largo de un año entero.
@@ -171,7 +171,7 @@
 
       <section id="pf-contexto" class="scroll-mt reveal group">
         <div class="mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div class="max-w-3xl">
+          <div class="max-w-5xl">
             <span class="text-indigo-600 font-bold tracking-widest text-sm uppercase mb-2 block">1. RAWGraphs | Visión Macro</span>
             <h3 class="text-3xl font-display font-bold text-slate-900 group-hover:text-indigo-600 transition-colors duration-300">
               ¿A dónde se fugó exactamente mi plata el ultimo año?
@@ -181,16 +181,16 @@
             </p>
           </div>
         </div>
-        <div class="glass-panel rounded-[2rem] p-4 md:p-8 transition-transform duration-500 hover:scale-[1.01]">
-          <div class="rounded-2xl overflow-hidden shadow-sm flex items-center justify-center min-h-[400px]">
-            <img src="./treemap_gastos.svg" alt="Treemap de Gastos del ultimo año" class="w-full h-auto max-h-[700px] object-contain mx-auto">
+        <div class="glass-panel rounded-[2rem] p-4 md:p-6 transition-transform duration-500 hover:scale-[1.01]">
+          <div class="rounded-2xl overflow-hidden shadow-sm flex items-center justify-center min-h-[60vh]">
+            <img src="./treemap_gastos.svg" alt="Treemap de Gastos del ultimo año" class="w-full h-auto max-h-[80vh] object-contain mx-auto">
           </div>
         </div>
       </section>
 
       <section id="pf-evolucion" class="scroll-mt reveal group">
         <div class="mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div class="max-w-3xl">
+          <div class="max-w-5xl">
             <span class="text-cyan-600 font-bold tracking-widest text-sm uppercase mb-2 block">2. Flourish | Dinámica Temporal</span>
             <h3 class="text-3xl font-display font-bold text-slate-900 group-hover:text-cyan-600 transition-colors duration-300">
               ¿Cómo mutaron mis prioridades financieras mes a mes?
@@ -201,7 +201,7 @@
           </div>
         </div>
 
-        <div class="glass-panel rounded-[2rem] p-4 md:p-8 transition-transform duration-500 hover:scale-[1.01] relative">
+        <div class="glass-panel rounded-[2rem] p-4 md:p-6 transition-transform duration-500 hover:scale-[1.01] relative">
           
           <div class="flex justify-center mb-6">
             <div class="bg-slate-100 p-1 rounded-full inline-flex border border-slate-200">
@@ -215,8 +215,8 @@
           </div>
 
           <div id="slide-1" class="block animate-[fadeIn_0.5s_ease-in-out]">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-sm p-2 min-h-[400px]">
-              <div class="flourish-embed flourish-chart" data-src="visualisation/28126953">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm p-2 w-full">
+              <div class="flourish-embed flourish-chart" data-src="visualisation/28126953" style="min-height: 70vh;">
                 <script src="https://public.flourish.studio/resources/embed.js"></script>
                 <noscript><img src="https://public.flourish.studio/visualisation/28126953/thumbnail" width="100%" alt="visualization" /></noscript>
               </div>
@@ -224,8 +224,8 @@
           </div>
 
           <div id="slide-2" class="hidden animate-[fadeIn_0.5s_ease-in-out]">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-sm p-2 min-h-[400px]">
-              <div class="flourish-embed flourish-chart" data-src="visualisation/28127137">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm p-2 w-full">
+              <div class="flourish-embed flourish-chart" data-src="visualisation/28127137" style="min-height: 70vh;">
                 <script src="https://public.flourish.studio/resources/embed.js"></script>
                 <noscript><img src="https://public.flourish.studio/visualisation/28127137/thumbnail" width="100%" alt="visualization" /></noscript>
               </div>
@@ -237,7 +237,7 @@
 
       <section id="pf-comparacion" class="scroll-mt reveal group">
         <div class="mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div class="max-w-3xl">
+          <div class="max-w-5xl">
             <span class="text-pink-600 font-bold tracking-widest text-sm uppercase mb-2 block">3. Datawrapper | Contraste</span>
             <h3 class="text-3xl font-display font-bold text-slate-900 group-hover:text-pink-600 transition-colors duration-300">
               ¿Gasto más por impulso los fines de semana o en la rutina semanal?
@@ -247,16 +247,19 @@
             </p>
           </div>
         </div>
-        <div class="glass-panel rounded-[2rem] p-4 md:p-8 transition-transform duration-500 hover:scale-[1.01]">
-          <div class="bg-white rounded-2xl overflow-hidden shadow-sm flex items-center justify-center min-h-[400px] border border-dashed border-slate-300 p-4">
-            <p class="text-slate-400 font-medium p-8 text-center">Espacio reservado para Datawrapper.<br/>Pegar aquí el iframe o script de Datawrapper.</p>
+        <div class="glass-panel rounded-[2rem] p-4 md:p-6 transition-transform duration-500 hover:scale-[1.01]">
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm p-4 min-h-[65vh]">
+            <div style="min-height:65vh" id="datawrapper-vis-5ZnKd">
+              <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5ZnKd/embed.js" charset="utf-8" data-target="#datawrapper-vis-5ZnKd"></script>
+              <noscript><img src="https://datawrapper.dwcdn.net/5ZnKd/full.png" alt="Men vs. (Range Plot)" /></noscript>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="pf-exploracion" class="scroll-mt reveal group">
         <div class="mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div class="max-w-3xl">
+          <div class="max-w-5xl">
             <span class="text-purple-600 font-bold tracking-widest text-sm uppercase mb-2 block">4. Tableau | Dashboard Exploratorio</span>
             <h3 class="text-3xl font-display font-bold text-slate-900 group-hover:text-purple-600 transition-colors duration-300">
               ¿Qué patrones ocultos revelan mis micro-transacciones diarias?
@@ -266,9 +269,9 @@
             </p>
           </div>
         </div>
-        <div class="glass-panel rounded-[2rem] p-4 md:p-8 transition-transform duration-500 hover:scale-[1.01]">
-          <div class="bg-white rounded-2xl overflow-hidden shadow-sm flex items-center justify-center min-h-[500px] w-full border border-dashed border-slate-300 p-4">
-            <p class="text-slate-400 font-medium p-8 text-center">Espacio reservado para Tableau/PowerBI.<br/>Recordar aplicar un flex/justify-center si el ancho es fijo.</p>
+        <div class="glass-panel rounded-[2rem] p-4 md:p-6 transition-transform duration-500 hover:scale-[1.01]">
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm p-4 flex justify-center w-full min-h-[75vh]">
+            <p class="text-slate-400 font-medium p-8 text-center m-auto">Espacio reservado para Tableau/PowerBI.<br/>Recordar aplicar un flex/justify-center si el ancho es fijo.</p>
           </div>
         </div>
       </section>
@@ -523,7 +526,8 @@
     document.querySelectorAll('.reveal').forEach((el) => {
       observer.observe(el);
     });
-// --- LÓGICA DEL CARRUSEL FLOURISH ---
+
+    // --- LÓGICA DEL CARRUSEL FLOURISH ---
     const btnSlide1 = document.getElementById('btn-slide-1');
     const btnSlide2 = document.getElementById('btn-slide-2');
     const slide1 = document.getElementById('slide-1');
@@ -531,30 +535,25 @@
 
     if(btnSlide1 && btnSlide2) {
       btnSlide1.addEventListener('click', () => {
-        // Estilos botones
         btnSlide1.classList.add('bg-white', 'text-cyan-700', 'shadow-sm');
         btnSlide1.classList.remove('text-slate-500');
         btnSlide2.classList.remove('bg-white', 'text-cyan-700', 'shadow-sm');
         btnSlide2.classList.add('text-slate-500');
         
-        // Mostrar / Ocultar
         slide2.classList.replace('block', 'hidden');
         slide1.classList.replace('hidden', 'block');
       });
 
       btnSlide2.addEventListener('click', () => {
-        // Estilos botones
         btnSlide2.classList.add('bg-white', 'text-cyan-700', 'shadow-sm');
         btnSlide2.classList.remove('text-slate-500');
         btnSlide1.classList.remove('bg-white', 'text-cyan-700', 'shadow-sm');
         btnSlide1.classList.add('text-slate-500');
         
-        // Mostrar / Ocultar
         slide1.classList.replace('block', 'hidden');
         slide2.classList.replace('hidden', 'block');
       });
     }
-    
   </script>
 </body>
 </html>
