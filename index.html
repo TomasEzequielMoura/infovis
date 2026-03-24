@@ -169,6 +169,41 @@
         </p>
       </div>
 
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto reveal mt-8 mb-16">
+        
+        <div class="glass-panel p-6 rounded-[2rem] flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg group">
+          <div class="w-14 h-14 bg-indigo-100/80 text-indigo-600 rounded-full flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            💸
+          </div>
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Volumen Total</span>
+          <span class="text-3xl font-display font-bold text-slate-800">$ 4.2M</span>
+        </div>
+
+        <div class="glass-panel p-6 rounded-[2rem] flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg group">
+          <div class="w-14 h-14 bg-cyan-100/80 text-cyan-600 rounded-full flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            💳
+          </div>
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Transacciones</span>
+          <span class="text-3xl font-display font-bold text-slate-800">1,245</span>
+        </div>
+
+        <div class="glass-panel p-6 rounded-[2rem] flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg group">
+          <div class="w-14 h-14 bg-pink-100/80 text-pink-600 rounded-full flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🎯
+          </div>
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Mayor Fuga</span>
+          <span class="text-xl md:text-2xl font-display font-bold text-slate-800">Consumo Pers.</span>
+        </div>
+
+        <div class="glass-panel p-6 rounded-[2rem] flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg group">
+          <div class="w-14 h-14 bg-purple-100/80 text-purple-600 rounded-full flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            ⏱️
+          </div>
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Frecuencia Promedio</span>
+          <span class="text-xl md:text-2xl font-display font-bold text-slate-800">3.4 por día</span>
+        </div>
+
+      </div>
       <section id="pf-contexto" class="scroll-mt reveal group">
         <div class="mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div class="max-w-5xl">
@@ -307,9 +342,8 @@
                 var divElement = document.getElementById('viz1774378418696');                    
                 var vizElement = divElement.getElementsByTagName('object')[0];                    
                 
-                // Aquí está la corrección: Forzamos que SIEMPRE ocupe el 100% del ancho del contenedor
                 vizElement.style.width = '100%';
-                vizElement.style.height = '800px'; // Puedes ajustar este valor si lo quieres más alto o más bajo
+                vizElement.style.height = '800px'; 
                 
                 var scriptElement = document.createElement('script');                    
                 scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
@@ -611,7 +645,6 @@
         slide2.classList.replace('hidden', 'block');
         
         // --- TIMEOUT PARA SALTAR AL SLIDE 3 ---
-        // 60000 = 60 segundos. Cambialo si tu animación en Flourish dura distinto.
         const tiempoDeCarrera = 60000; 
         
         raceTimeout = setTimeout(() => {
