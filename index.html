@@ -196,7 +196,7 @@
               ¿Cómo mutaron mis prioridades financieras mes a mes?
             </h3>
             <p class="text-lg text-slate-500 mt-2 font-light">
-              Evolución cronológica de los gastos mediante <i>Bar Chart Race</i>. Podés alternar entre las vistas para descubrir qué categorías lideraron el gasto a lo largo del año.
+              Evolución cronológica de los gastos. La carrera animada muestra la volatilidad, mientras que el análisis de líneas detalla la evolución específica de cada categoría.
             </p>
           </div>
         </div>
@@ -206,10 +206,13 @@
           <div class="flex justify-center mb-6">
             <div class="bg-slate-100 p-1 rounded-full inline-flex border border-slate-200">
               <button id="btn-slide-1" class="px-5 py-2 rounded-full text-sm font-bold bg-white text-cyan-700 shadow-sm transition-all duration-300">
-                Gráfico por categoria
+                1. Gráfico por categoría
               </button>
               <button id="btn-slide-2" class="px-5 py-2 rounded-full text-sm font-bold text-slate-500 hover:text-slate-800 transition-all duration-300">
-                Consumo personal mes a mes
+                2. Consumo personal (Carrera)
+              </button>
+              <button id="btn-slide-3" class="px-5 py-2 rounded-full text-sm font-bold text-slate-500 hover:text-slate-800 transition-all duration-300 relative overflow-hidden group">
+                3. Consumo personal (Detalle)
               </button>
             </div>
           </div>
@@ -228,6 +231,15 @@
               <div class="flourish-embed flourish-chart" data-src="visualisation/28127137" style="min-height: 70vh;">
                 <script src="https://public.flourish.studio/resources/embed.js"></script>
                 <noscript><img src="https://public.flourish.studio/visualisation/28127137/thumbnail" width="100%" alt="visualization" /></noscript>
+              </div>
+            </div>
+          </div>
+
+          <div id="slide-3" class="hidden animate-[fadeIn_0.5s_ease-in-out]">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm p-2 w-full">
+              <div class="flourish-embed flourish-chart" data-src="visualisation/28209962" style="min-height: 70vh;">
+                <script src="https://public.flourish.studio/resources/embed.js"></script>
+                <noscript><img src="https://public.flourish.studio/visualisation/28209962/thumbnail" width="100%" alt="visualization" /></noscript>
               </div>
             </div>
           </div>
@@ -416,13 +428,12 @@
   </main>
 
   <script>
-    // --- LÓGICA DE TABS (PESTAÑAS) ---
+    // --- LÓGICA DE TABS (PESTAÑAS PRINCIPALES) ---
     const btnEntregable = document.getElementById('tab-entregable');
     const btnPractica = document.getElementById('tab-practica');
     const vistaEntregable = document.getElementById('vista-entregable');
     const vistaPractica = document.getElementById('vista-practica');
     
-    // Menús dinámicos
     const menuEntregable = document.getElementById('menu-entregable');
     const menuPractica = document.getElementById('menu-practica');
 
@@ -524,31 +535,61 @@
       observer.observe(el);
     });
 
-    // --- LÓGICA DEL CARRUSEL FLOURISH ---
+    // --- LÓGICA DEL CARRUSEL FLOURISH (3 SLIDES + AUTOPLAY) ---
     const btnSlide1 = document.getElementById('btn-slide-1');
     const btnSlide2 = document.getElementById('btn-slide-2');
+    const btnSlide3 = document.getElementById('btn-slide-3');
+    
     const slide1 = document.getElementById('slide-1');
     const slide2 = document.getElementById('slide-2');
+    const slide3 = document.getElementById('slide-3');
+    
+    let raceTimeout; 
 
-    if(btnSlide1 && btnSlide2) {
+    function resetCarouselButtons() {
+      const buttons = [btnSlide1, btnSlide2, btnSlide3];
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-white', 'text-cyan-700', 'shadow-sm');
+        btn.classList.add('text-slate-500');
+      });
+      
+      const slides = [slide1, slide2, slide3];
+      slides.forEach(slide => {
+        slide.classList.replace('block', 'hidden');
+      });
+      
+      clearTimeout(raceTimeout);
+    }
+
+    if(btnSlide1 && btnSlide2 && btnSlide3) {
+      
       btnSlide1.addEventListener('click', () => {
+        resetCarouselButtons();
         btnSlide1.classList.add('bg-white', 'text-cyan-700', 'shadow-sm');
         btnSlide1.classList.remove('text-slate-500');
-        btnSlide2.classList.remove('bg-white', 'text-cyan-700', 'shadow-sm');
-        btnSlide2.classList.add('text-slate-500');
-        
-        slide2.classList.replace('block', 'hidden');
         slide1.classList.replace('hidden', 'block');
       });
 
       btnSlide2.addEventListener('click', () => {
+        resetCarouselButtons();
         btnSlide2.classList.add('bg-white', 'text-cyan-700', 'shadow-sm');
         btnSlide2.classList.remove('text-slate-500');
-        btnSlide1.classList.remove('bg-white', 'text-cyan-700', 'shadow-sm');
-        btnSlide1.classList.add('text-slate-500');
-        
-        slide1.classList.replace('block', 'hidden');
         slide2.classList.replace('hidden', 'block');
+        
+        // --- TIMEOUT PARA SALTAR AL SLIDE 3 ---
+        // 30000 = 30 segundos. Cambialo si tu animación en Flourish dura distinto.
+        const tiempoDeCarrera = 30000; 
+        
+        raceTimeout = setTimeout(() => {
+          btnSlide3.click(); 
+        }, tiempoDeCarrera);
+      });
+
+      btnSlide3.addEventListener('click', () => {
+        resetCarouselButtons();
+        btnSlide3.classList.add('bg-white', 'text-cyan-700', 'shadow-sm');
+        btnSlide3.classList.remove('text-slate-500');
+        slide3.classList.replace('hidden', 'block');
       });
     }
   </script>
